@@ -1,0 +1,49 @@
+{% extends "blog/base.html" %}
+
+{% block main %}
+
+<div class="section search-result-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="heading">Category: {{ categorie.name }}</div>
+            </div>
+        </div>
+        <div class="row posts-entry">
+            <div class="col-lg-8">
+                {% for post in posts_categorie_name %}
+                <div class="blog-entry d-flex blog-entry-search-item">
+                    <a href="{% url "single" post.id %}" class="img-link me-4">
+                        <img src="{{ post.image.url }}" alt="Image" class="img-fluid">
+                    </a>
+                    <div>
+                        <span class="date"> {{ post.date }} &bullet; <a href="#">{{post.categorie}}</a></span>
+                        <h2><a href="{% url "single" post.id %}">{{ post.title }}</a></h2>
+                        <p> {{ post.partie1|truncatewords:15 }} </p>
+                        <p><a href="{% url "single" post.id %}" class="btn btn-sm btn-outline-primary">Lire l'article</a></p>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="row text-start pt-5 border-top">
+                    <div class="col-md-12">
+                        <div class="custom-pagination">
+                            <span>1</span>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                            <span>...</span>
+                            <a href="#">15</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            {% include "blog/includes/slidebar.html" %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock main %}

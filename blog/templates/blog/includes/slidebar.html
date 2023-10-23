@@ -1,0 +1,50 @@
+<div class="col-lg-4 sidebar">
+
+    <div class="sidebar-box search-form-wrap mb-4">
+      <form action="#" class="sidebar-search-form">
+        <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+      </form>
+    </div>
+    <!-- END sidebar-box -->
+    <div class="sidebar-box">
+      <h3 class="heading">Popular Posts</h3>
+      <div class="post-entry-sidebar">
+        <ul>
+            {% for post in most_popular_posts %}
+            <li>
+                <a href="">
+                  <img src="{{ post.image.url }}" alt="Image placeholder" class="me-4 rounded">
+                  <div class="text">
+                    <h4>{{ post.title }}</h4>
+                    <div class="post-meta">
+                      <span class="mr-2">{{ post.date }}</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <!-- END sidebar-box -->
+
+    <div class="sidebar-box">
+      <h3 class="heading">Categories</h3>
+      <ul class="categories">
+        {% for categorie in all_categories %}
+        <li><a href="#">{{ categorie.name }}<span>(12)</span></a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <!-- END sidebar-box -->
+
+    <div class="sidebar-box">
+      <h3 class="heading">Tags</h3>
+      <ul class="tags">
+        {% for tag in all_tags %}
+        <li><a href="#">{{ tag.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>

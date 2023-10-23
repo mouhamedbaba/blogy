@@ -1,0 +1,11 @@
+<div class="col-md-6 col-lg-3">
+    <div class="blog-entry">
+      <a href="single.html" class="img-link">
+        <img src="{{ post.image.url }}" alt="Image" class="img-fluid">
+      </a>
+      <span class="date"> {{ post.date }} </span>
+      <h2><a href="single.html">{{ post.title }}</a></h2>
+      <p>{{ post.partie1|truncatewords:8 }}</p>
+      <p><a href="#" class="read-more">lire l'article</a></p>
+    </div>
+</div>

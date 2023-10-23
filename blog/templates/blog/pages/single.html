@@ -1,0 +1,129 @@
+{% extends "blog/base.html" %}
+
+{% block main %}
+  <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('{{ post.image.url }}');">
+    <div class="container">
+      <div class="row same-height justify-content-center">
+        <div class="col-md-6">
+          <div class="post-entry text-center">
+            <h1 class="mb-4">{{ post.title }}</h1>
+            <div class="post-meta align-items-center text-center">
+              <figure class="author-figure mb-0 me-3 d-inline-block">
+                {% comment %} <img src="{{ post.image.url }}" alt="Image" class="img-fluid"> {% endcomment %}
+            </figure>
+            {% if post.author.first_name and post.author.last_name %}
+            <span class="d-inline-block mt-1">{{ post.author.first_name }} {{ post.author.last_name }}</span>
+            {% else %}
+            <span class="d-inline-block mt-1">{{ post.author.username }}</span>
+            {% endif %}
+              <span>&nbsp;-&nbsp; {{ post.date }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="row blog-entries element-animate">
+
+        <div class="col-md-12 col-lg-8 main-content">
+
+          <div class="post-content-body">
+            <p>{{ post.partie1 }}</p>
+            <div class="row my-4">
+              <div class="col-md-12 mb-4">
+                <img src="{{ post.image1_partie1.url }}" alt="Image placeholder" class="img-fluid rounded">
+              </div>
+              <div class="col-md-6 mb-4">
+                <img src="{{ post.image2_partie1.url }}" alt="Image placeholder" class="img-fluid rounded">
+              </div>
+              <div class="col-md-6 mb-4">
+                <img src="{{ post.image3_partie1.url }}" alt="Image placeholder" class="img-fluid rounded">
+              </div>
+            </div>
+            <p>{{ post.partie2 }}</p>
+            
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus magni explicabo id molestiae, minima quas assumenda consectetur, nobis neque rem, incidunt quam tempore perferendis provident obcaecati sapiente, animi vel expedita omnis quae ipsa! Obcaecati eligendi sed odio labore vero reiciendis facere accusamus molestias eaque impedit, consequuntur quae fuga vitae fugit?</p>
+          </div>
+
+
+          <div class="pt-5">
+            <p>Categories:  <a href="#"> {{ post.categorie }}</a>  Tags: <a href="#">
+                {% comment %} {% for tag in post.tags %} {% endcomment %}
+                <a href="#">{{ post.tags }}</a>
+                {% comment %} {% endfor %} {% endcomment %}
+            </p>
+          </div>
+
+
+          <div class="pt-5 comment-wrap">
+            <h3 class="mb-5 heading">{{ comments|length }} comentaires</h3>
+            <ul class="comment-list">
+                {% for comment in comments %}
+                <li class="comment">
+                    {% comment %} <div class="vcard">
+                      <img src="images/person_1.jpg" alt="Image placeholder">
+                    </div> {% endcomment %}
+                    <div class="comment-body">
+                      <h3>{{ comment.username }}</h3>
+                      <div class="meta">{{ comment.date }}</div>
+                      <p>{{ comment.message }} </p>
+                      <p><a href="#" class="reply rounded">Reply</a></p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <!-- END comment-list -->
+
+            <div class="comment-form-wrap pt-5">
+              <h3 class="mb-5">Leave a comment</h3>
+              <form action="#" class="p-5 bg-light">
+                <div class="form-group">
+                  <label for="name">Name *</label>
+                  <input type="text" class="form-control" id="name">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email *</label>
+                  <input type="email" class="form-control" id="email">
+                </div>
+                <div class="form-group">
+                  <label for="website">Website</label>
+                  <input type="url" class="form-control" id="website">
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                  <input type="submit" value="Post Comment" class="btn btn-primary">
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+        </div>
+        {% include "blog/includes/slidebar.html" %}
+    </div>
+  </section>
+
+
+  <!-- Start posts-entry -->
+  <section class="section posts-entry posts-entry-sm bg-light">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-12 text-uppercase text-black">Plus d'articles</div>
+      </div>
+      <div class="row">
+        {% for post in random_posts %}
+        {% include "blog/includes/post_card_grid.html" %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock main %}
+ 
