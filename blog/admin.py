@@ -19,4 +19,13 @@ class CategorieAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     pass
 
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
+    pass
+
+
 

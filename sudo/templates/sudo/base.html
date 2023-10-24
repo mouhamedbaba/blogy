@@ -1,0 +1,27 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  {% include "sudo/includes/head.html" %}
+
+</head>
+
+<body>
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+  data-sidebar-position="fixed" data-header-position="fixed">
+  <!-- Sidebar Start -->
+  {% block aside %}{% include "sudo/includes/aside.html" %}{% endblock aside %}
+  <!--  Sidebar End -->
+  <!--  Main wrapper -->
+  <div class="body-wrapper">
+    <!--  Header Start -->
+    {% block header %}{% include "sudo/includes/header.html" %}{% endblock header %}
+    <!--  Header End -->
+    <div class="container-fluid">{% block main %}{% endblock main %}</div>
+  </div>
+</div>
+  {% include "sudo/includes/scripts.html" %}
+</body>
+
+</html>

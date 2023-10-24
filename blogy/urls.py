@@ -4,8 +4,10 @@ from django.urls import include, path
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('blog.urls'))  # Supprimez le slash au début
+    path('django/', admin.site.urls),
+    path('', include('blog.urls')),
+    path('admin/', include('sudo.urls')),
+    path('auth/', include('authentication.urls')),
 ]
 
 if settings.DEBUG:

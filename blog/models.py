@@ -69,3 +69,35 @@ class Comment(models.Model):
     def get_absolute_url(self):
         return reverse("Comment_detail", kwargs={"pk": self.pk})
 
+class Contact(models.Model):
+
+    username = models.CharField( max_length=50)
+    email = models.EmailField(max_length=254, unique=True)
+    date = models.DateTimeField(auto_now=False, auto_now_add=True, null=True)
+
+    class Meta:
+        verbose_name = ("Contact")
+        verbose_name_plural = ("Contacts")
+
+    def __str__(self):
+        return self.email
+
+    def get_absolute_url(self):
+        return reverse("Contact_detail", kwargs={"pk": self.pk})
+
+class Message(models.Model):
+
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
+    subject = models.CharField(max_length=50)
+    text = models.TextField()
+    date = models.DateTimeField(auto_now=False, auto_now_add=True, null=True)
+
+    class Meta:
+        verbose_name = ("Message")
+        verbose_name_plural = ("Messages")
+
+    def __str__(self):
+        return self.subject
+
+    def get_absolute_url(self):
+        return reverse("Message_detail", kwargs={"pk": self.pk})

@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from blog.forms import CommentForm
 
 from blog.models import Categorie, Comment, Post
 
@@ -21,9 +22,21 @@ def blog(request):
 def single(request, post_id):
     post = Post.objects.get(pk = post_id)
     comments = Comment.objects.filter(post = post_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Enregistrez le post en base de données
+            form.save()
+            # Redirigez vers une page de confirmation ou ailleurs
+            return redirect('blog')
+        else :
+            print('invalide form')
+    else:
+        form = CommentForm()
     context = {
         'post': post,
-        'comments' : comments
+        'comments' : comments,
+        'form' : form
     }
     return render(request, 'blog/pages/single.html', context)
 
@@ -51,4 +64,18 @@ def search(request):
     return render(request, 'blog/pages/search.html', context)
 
 def contact(request):
-    return render(request , 'blog/pages/contact.html')
+    if request.method == 'POST':
+        form = CommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Enregistrez le post en base de données
+            form.save()
+            # Redirigez vers une page de confirmation ou ailleurs
+            return redirect('contact')
+        else :
+            print('invalide form')
+    else:
+        form = CommentForm()
+    context = {
+        'form' : form
+    }
+    return render(request , 'blog/pages/contact.html', context)
