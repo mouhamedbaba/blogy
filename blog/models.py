@@ -23,7 +23,7 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=200)
     image = models.ImageField(upload_to='media')
-    date = models.DateField(auto_now=False, auto_now_add=True)
+    date = models.DateTimeField(auto_now=False, auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     partie1 = models.TextField()
     image1_partie1 = models.ImageField(upload_to='media', blank=True)

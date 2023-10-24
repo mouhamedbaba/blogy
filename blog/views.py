@@ -6,9 +6,17 @@ from blog.models import Categorie, Comment, Post
 # Create your views here.
 
 def home(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-date')
+    business = Post.objects.filter(categorie = 4).order_by('-date')
+    politic = Post.objects.filter(categorie = 6).order_by('-date')
+    sante = Post.objects.filter(categorie = 7).order_by('-date')
+    travel = Post.objects.filter(categorie = 3).order_by('-date')
     context ={
-        'posts' : posts
+        'posts' : posts,
+        'politic' : politic,
+        'bussiness' : business,
+        'sante': sante,
+        'travel' : travel
     }
     return render(request , 'blog/pages/home.html', context)
 

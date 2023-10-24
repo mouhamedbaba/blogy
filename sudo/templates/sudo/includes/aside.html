@@ -15,7 +15,19 @@
         <ul id="sidebarnav">
           <li class="nav-small-cap">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">{{ blog.name }}</span>
+            <span class="hide-menu">Blogger</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="{% url 'post' %}" aria-expanded="false">
+              <span>
+                <i class="ti ti-layout-dashboard"></i>
+              </span>
+              <span class="hide-menu">Publier</span>
+            </a>
+          </li>
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Informations</span>
           </li>
           <li class="sidebar-item">
             <a class="sidebar-link" href="{% url 'home_admin' %}" aria-expanded="false">
@@ -39,6 +51,14 @@
                 <i class="ti ti-layout-dashboard"></i>
               </span>
               <span class="hide-menu">Messages</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="{% url 'authors' %}" aria-expanded="false">
+              <span>
+                <i class="ti ti-layout-dashboard"></i>
+              </span>
+              <span class="hide-menu">Auteurs</span>
             </a>
           </li>
         </ul>
